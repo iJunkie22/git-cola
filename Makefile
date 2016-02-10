@@ -14,7 +14,7 @@ MARKDOWN = markdown
 MKDIR_P = mkdir -p
 NOSETESTS = nosetests
 PYLINT = pylint
-PYTHON = python
+PYTHON = /opt/local/bin/python2.7
 RM = rm -f
 RM_R = rm -fr
 RMDIR = rmdir
@@ -25,13 +25,13 @@ FLAKE8_FLAGS = --max-line-length=80 --statistics --doctests --format=pylint
 PYLINT_FLAGS = --py3k --output-format=colorized --rcfile=.pylintrc
 
 # These values can be overridden on the command-line or via config.mak
-prefix = $(HOME)
+prefix = /opt/local
 bindir = $(prefix)/bin
 datadir = $(prefix)/share/git-cola
 coladir = $(datadir)/lib
 hicolordir = $(prefix)/share/icons/hicolor/scalable/apps
-darwin_python = /System/Library/Frameworks/Python.framework/Resources/Python.app/Contents/MacOS/Python
-# DESTDIR =
+darwin_python = /opt/local/Library/Frameworks/Python.framework/Versions/2.7/Resources/Python.app/Contents/MacOS/Python
+#DESTDIR = $(HOME)/Build/gctest
 
 cola_base := git-cola
 cola_app_base= $(cola_base).app
@@ -170,7 +170,7 @@ git-cola.app:
 	$(CP) contrib/darwin/Info.plist contrib/darwin/PkgInfo $(cola_app)/Contents
 	$(CP) contrib/darwin/git-cola $(cola_app)/Contents/MacOS
 	$(CP) contrib/darwin/git-cola.icns $(cola_app)/Contents/Resources
-	$(MAKE) prefix=$(cola_app)/Contents/Resources install install-doc
+	$(MAKE) prefix=$(cola_app)/Contents/Resources install # install-doc
 	$(LN_S) $(darwin_python) $(cola_app)/Contents/Resources/git-cola
 .PHONY: git-cola.app
 

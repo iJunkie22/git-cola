@@ -72,6 +72,7 @@ from cola.models import main
 from cola.widgets import cfgactions
 from cola.widgets import startup
 from cola.settings import Session
+import qdarkstyle
 
 
 def setup_environment():
@@ -168,6 +169,7 @@ class ColaApplication(object):
         if gui:
             self._app = current(tuple(argv))
             self._app.setWindowIcon(icons.cola())
+            self._app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
         else:
             self._app = QtCore.QCoreApplication(argv)
 
